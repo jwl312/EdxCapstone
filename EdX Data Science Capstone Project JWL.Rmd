@@ -77,8 +77,12 @@ y_hat_final <- predict(fit2, newdata = val)
 #Create a dataframe version to make a table
 fit2_t <- tidy(fit2)
 
+#Create an RMSE function
+RMSE <- function(true_ratings, predicted_ratings){ sqrt(mean((true_ratings - predicted_ratings)^2 )) }
+
+
 #Now see the root mean square error: 0.6816817
-final_rmse <- mean((y_hat_final - val$rating)^2 )
+final_rmse <- RMSE(val$rating,y_hat_final)
 
 mu <- mean(edx$rating)
 
